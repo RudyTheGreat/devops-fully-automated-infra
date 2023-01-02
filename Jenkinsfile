@@ -19,7 +19,6 @@ pipeline {
             steps {
                 echo 'verifying the terrform version...'
                 sh 'terraform --version'
-               
             }
         }
         
@@ -27,7 +26,6 @@ pipeline {
             steps {
                 echo 'Initiliazing terraform project...'
                 sh 'sudo terraform init'
-               
             }
         }
         
@@ -35,7 +33,6 @@ pipeline {
             steps {
                 echo 'Code syntax checking...'
                 sh 'sudo terraform validate'
-               
             }
         }
         
@@ -43,7 +40,6 @@ pipeline {
             steps {
                 echo 'Terraform plan for the dry run...'
                 sh 'sudo terraform plan'
-               
             }
         }
         
@@ -64,19 +60,15 @@ pipeline {
             steps {
                 
                 input 'Approval required for deployment'
-               
             }
         }
         
-         stage('Terraform apply') {
+         stage('Terraform destroy') {
             steps {
-                echo 'Terraform apply...'
+                echo 'Terraform destroy...'
                 sh 'sudo terraform destroy --auto-approve'
-               
-               
             }
-        }
-        
+        } 
     }
     
      post { 
@@ -84,8 +76,5 @@ pipeline {
             echo 'I will always say Hello again!'
             slackSend channel: '#team-devops', color: COLOR_MAP[currentBuild.currentResult], message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         }
-    }
-    
-    
-    
+    }  
 }
