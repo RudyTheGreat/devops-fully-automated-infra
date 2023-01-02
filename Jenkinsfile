@@ -31,7 +31,6 @@ pipeline {
             }
         }
         
-        
         stage('Terraform validate') {
             steps {
                 echo 'Code syntax checking...'
@@ -40,7 +39,6 @@ pipeline {
             }
         }
         
-        
         stage('Terraform plan') {
             steps {
                 echo 'Terraform plan for the dry run...'
@@ -48,9 +46,6 @@ pipeline {
                
             }
         }
-        
-        
-        
         
         stage('Checkov scan') {
             steps {
@@ -65,8 +60,6 @@ pipeline {
             }
         }
         
-        
-        
         stage('Manual approval') {
             steps {
                 
@@ -74,7 +67,6 @@ pipeline {
                
             }
         }
-        
         
          stage('Terraform apply') {
             steps {
@@ -84,7 +76,6 @@ pipeline {
                
             }
         }
-        
         
     }
     
