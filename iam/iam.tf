@@ -27,6 +27,7 @@ resource "aws_iam_role" "iam_role" {
     ]
   })
 
+
   inline_policy {
     name = join("", [var.name, "-", "iam-policy"])
 
